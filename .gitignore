@@ -1,0 +1,6 @@
+/venv/
+/.idea/
+/*.session
+/*.session-journal
+env.list
+unknown_errors.txt

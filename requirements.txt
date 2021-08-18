@@ -1,0 +1,6 @@
+git+https://github.com/pyrogram/pyrogram@master
+python-dotenv
+pykeyboard
+pydantic
+tgcrypto
+pyromod
