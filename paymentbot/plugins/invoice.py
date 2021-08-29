@@ -31,8 +31,8 @@ from .handlers import on_shipping_query, on_checkout_query
 invoice = Invoice(
     currency="EUR",
     prices=[
-        LabeledPrice(amount=2000, label="asd"),
-        LabeledPrice(amount=20000, label="asd"),
+        LabeledPrice(amount=2000, label="asd 1"),
+        LabeledPrice(amount=20000, label="asd 2"),
     ],
     test=True,
     name_requested=True,
@@ -42,6 +42,8 @@ invoice = Invoice(
     flexible=True,
     phone_to_provider=True,
     email_to_provider=True,
+    max_tip_amount=500,
+    suggested_tip_amounts=[100, 200],
 )
 
 
@@ -89,7 +91,7 @@ async def process_shipping_query(
             query_id=query.query_id,
             shipping_options=[
                 ShippingOption(
-                    id="asd",
+                    id="asd_shipping",
                     title="Test Shipping Option",
                     prices=[
                         LabeledPrice(amount=20000, label="asd"),
