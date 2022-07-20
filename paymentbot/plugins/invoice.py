@@ -47,9 +47,9 @@ invoice = Invoice(
 )
 
 
-@Client.on_message(filters.group & filters.command("invoice") & ADMINS)
+@Client.on_message(filters.private & filters.command("invoice") & ADMINS)
 async def send_invoice(bot: Client, msg: Message):
-    r = await bot.send(
+    r = await bot.invoke(
         SendMedia(
             peer=await bot.resolve_peer(msg.chat.id),
             media=InputMediaInvoice(
@@ -86,7 +86,7 @@ async def process_shipping_query(
         chat_id=query.user_id,
         text=f"You've chosen an option.\n\n<b>Payload</b>:\n<code>{html.escape(str(query))}</code>",
     )
-    return await bot.send(
+    return await bot.invoke(
         SetBotShippingResults(
             query_id=query.query_id,
             shipping_options=[
@@ -114,7 +114,7 @@ async def process_checkout_query(
         chat_id=query.user_id,
         text=f"You successfully bought something.\n\n<b>Payload</b>:\n<code>{html.escape(str(query))}</code>",
     )
-    return await bot.send(
+    return await bot.invoke(
         SetBotPrecheckoutResults(
             query_id=query.query_id,
             success=True,
@@ -125,7 +125,7 @@ async def process_checkout_query(
 
 @Client.on_inline_query()
 async def inline_invoice(bot: Client, query: InlineQuery):
-    return await bot.send(
+    return await bot.invoke(
         SetInlineBotResults(
             query_id=int(query.id),
             results=[

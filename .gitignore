@@ -1,6 +1,6 @@
 /venv/
 /.idea/
-/*.session
-/*.session-journal
+*.session*
 env.list
 unknown_errors.txt
+**/__pycache__

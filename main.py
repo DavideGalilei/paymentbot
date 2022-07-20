@@ -4,7 +4,7 @@ import sys
 
 import dotenv
 import pyromod.listen
-from pyrogram import Client, idle
+from pyrogram import Client, idle, enums
 
 from paymentbot.config import shared, Settings
 from paymentbot.utils import ADMINS
@@ -19,13 +19,13 @@ async def main():
     print("Setup database...", end="")
     shared.settings = Settings()
     bot = Client(
-        session_name="paymentbot",
+        "paymentbot",
         api_id=shared.settings.API_ID,
         api_hash=shared.settings.API_HASH,
         bot_token=shared.settings.BOT_TOKEN,
         plugins=dict(root="paymentbot.plugins"),
         sleep_threshold=60 * 60 * 24,
-        parse_mode="html",
+        parse_mode=enums.ParseMode.HTML,
     )
     print("\rBot has been started!")
 
